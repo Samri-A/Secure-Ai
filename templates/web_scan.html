@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Security Testing</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #111827;
+            color: white;
+            text-align: center;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: #2563eb;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 16px;
+        }
+
+        /* Container */
+        .container {
+            background-color: #1e3a8a;
+            width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .container h2 {
+            font-size: 22px;
+        }
+
+        .container p {
+            font-size: 14px;
+            color: #d1d5db;
+        }
+
+        /* Input Field */
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 6px;
+            background-color: #374151;
+            color: #d1d5db;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* Buttons */
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            flex: 1;
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        #scan-btn {
+            background-color: #10b981;
+            color: white;
+        }
+
+        #scan-btn:hover {
+            background-color: #059669;
+        }
+
+        #back-btn {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        #back-btn:hover {
+            background-color: #2563eb;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: none;
+            margin-top: 20px;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Scanning Text */
+        .scanning-text {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Vulnerability Detection and Risk Analysis Tool</h1>
+        <p>Test the security of your web endpoints and assess potential vulnerabilities with AI-powered analysis</p>
+    </div>
+
+    <div class="container">
+        <h2>Web Security Testing</h2>
+        <p>Enter the web endpoint URL you wish to test for vulnerabilities </p>
+        <label for="web-url">Enter Web Endpoint URL:</label>
+        
+        
+        <form action="/analyze_url" method="POST">
+            <input type="text" id="web-url" name="request_data" required>
+            <div class="buttons">
+                <button type="submit" id="scan-btn">Scan Web Endpoint</button>
+                <button type="button" id="back-btn" onclick="window.location.href='/';">Back to main page</button>
+            </div>
+        </form>
+
+        <div id="spinner" class="spinner"></div>
+        <div id="scanning-text" class="scanning-text">Scanning...</div>
+    </div>
+
+    <script>
+        
+
+        document.getElementById("back-btn").addEventListener("click", function() {
+            const spinner = document.getElementById("spinner");
+            const scanningText = document.getElementById("scanning-text");
+            spinner.style.display = "block";
+            scanningText.style.display = "block";
+            setTimeout(() => {
+                spinner.style.display = "none";
+                scanningText.style.display = "none";
+                alert("Returning to main page...");
+            }, 1000); // Simulate a 1-second delay
+        });
+    </script>
+
+</body>
+</html>
