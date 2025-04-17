@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Security Testing Report</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0c1524;
+            color: white;
+            text-align: center;
+        }
+
+        /* Header */
+        .header {
+            background-color: #2563eb;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 16px;
+        }
+
+        /* Main Content */
+        .content {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        /* Left Section - Pie Chart */
+        .analysis-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            width: 320px;
+            height: 320px; /* Fix the height to prevent traveling */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .analysis-box canvas {
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        /* Right Section - Issues and Suggestions */
+        .report-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            width: 300px;
+            text-align: left;
+        }
+
+        .report-box h3 {
+            margin-top: 0;
+        }
+
+        /* Buttons */
+        .buttons {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        #deep-analysis {
+            background-color: #10b981;
+            color: white;
+        }
+
+        #rescan {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        #back {
+            background-color: #222;
+            color: white;
+        }
+
+        #deep-analysis:hover {
+            background-color: #059669;
+        }
+
+        #rescan:hover {
+            background-color: #2563eb;
+        }
+
+        #back:hover {
+            background-color: #111;
+        }
+
+        /* Recommendation Box */
+        .recommendation-box {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            color: white;
+        }
+
+        .recommendation-box pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Vulnerability Detection and Risk Analysis Tool</h1>
+        <p>Test the security of your API endpoints and assess potential vulnerabilities with AI-powered analysis</p>
+    </div>
+
+    <div class="content">
+        <!-- Analysis Chart Section -->
+        <div class="analysis-box">
+            <h3>Overall System Risk</h3>
+            <canvas id="riskChart"></canvas>
+            <p><strong>High Risk: 63%</strong></p>
+        </div>
+
+        <!-- Issues Found -->
+        <div class="report-box">
+            <h3>⚠️ Issues Found</h3>
+            <ul>
+                <li>{{analysis_result}}</li>
+            </ul>
+            <div class="buttons">
+                <button id="deep-analysis">Want deep analysis</button>
+                <button id="rescan">Rescan your system</button>
+                <button id="back">Back to main page</button>
+            </div>
+        </div>
+
+        <!-- Suggestions -->
+        <div class="report-box">
+            <h3>🔹 Suggestions & Fixes</h3>
+            <div class="recommendation-box">
+                <pre class="sth">{{recommendation}}</pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fix for Marked.js
+        document.addEventListener("DOMContentLoaded", function () {
+            const recommendationBox = document.querySelector('.sth');
+            if (recommendationBox) {
+                recommendationBox.innerHTML = marked.parse(recommendationBox.innerHTML);
+            }
+        });
+
+        // Pie Chart for Risk Analysis
+        const ctx = document.getElementById('riskChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['High Risk', 'Low Risk'],
+                datasets: [{
+                    data: [63, 37],
+                    backgroundColor: ['#ff3b3b', '#36d399'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '70%',
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        // Button Actions
+        document.getElementById("deep-analysis").addEventListener("click", function() {
+            alert("Performing deep security analysis...");
+        });
+
+        document.getElementById("rescan").addEventListener("click", function() {
+            alert("Rescanning API vulnerabilities...");
+        });
+
+        document.getElementById("back").addEventListener("click", function() {
+            window.location.href = '/';
+        });
+    </script>
+
+</body>
+</html>
