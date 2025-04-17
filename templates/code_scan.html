@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerability Detection and Risk Analysis Tool</title>
+    <!-- Custom Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111827;
+            color: white;
+            text-align: center;
+        }
+
+        .header {
+            background-color: #2563eb;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-family: 'Roboto', sans-serif; /* Apply the font style */
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 16px;
+        }
+
+        .container {
+            background-color: #1e3a8a;
+            width: 80%; /* Make the container wider */
+            max-width: 800px; /* Set a maximum width */
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .container h2 {
+            font-size: 22px;
+        }
+
+        .container p {
+            font-size: 14px;
+            color: #d1d5db;
+        }
+
+        textarea {
+            width: 100%;
+            height: 400px; /* Make the input area bigger */
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 6px;
+            border: none;
+            background-color: #374151;
+            color: #d1d5db;
+            margin-top: 10px;
+            resize: none;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            flex: 1;
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        #scan-btn {
+            background-color: #10b981;
+            color: white;
+        }
+
+        #scan-btn:hover {
+            background-color: #059669;
+        }
+
+        #back-btn {
+            background-color: #3b82f6;
+            color: white;
+        }
+
+        #back-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Vulnerability Detection and Risk Analysis Tool</h1>
+        <p>Test the security of your code and assess potential vulnerabilities with AI-powered analysis</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h2>Enter Your Source Code for Vulnerability Detection</h2>
+        
+        <!-- Code Input Form -->
+        <form action="/predict" , method="POST">
+            <textarea name="code" placeholder="Write or paste your code here..." required></textarea><br>
+
+            <div class="buttons">
+                <button id="scan-btn" type="submit">Analyze Code</button>
+                <button id="back-btn" type="button" onclick="window.location.href='/'">Back to main page</button>
+            </div>
+        </form>
+
+      
+    </div>
+
+</body>
+</html>
