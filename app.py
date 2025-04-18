@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key="sk-e1e016d00a7648cb9d3527a7495dd0b2",
+    api_key="",
 )
 
 tokenizer_0 = AutoTokenizer.from_pretrained('mrm8488/codebert-base-finetuned-detect-insecure-code')
